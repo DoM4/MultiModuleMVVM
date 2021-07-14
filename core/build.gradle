@@ -37,6 +37,11 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${DependenciesPlugin.kotlinVersion}"
+    implementation "io.insert-koin:koin-core:${DependenciesPlugin.koinVersion}"
+    implementation "io.insert-koin:koin-core-ext:${DependenciesPlugin.koinVersion}"
+    implementation "io.insert-koin:koin-android:${DependenciesPlugin.koinVersion}"
+    implementation "io.insert-koin:koin-test:${DependenciesPlugin.koinVersion}"
+
     implementation "androidx.core:core-ktx:${DependenciesPlugin.coreKtlVersion}"
     implementation "androidx.appcompat:appcompat:${DependenciesPlugin.appCompactVersion}"
     implementation "com.google.android.material:material:${DependenciesPlugin.materialVersion}"
@@ -44,4 +49,10 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:${DependenciesPlugin.testExtJunitVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${DependenciesPlugin.espressoCoreVersion}"
     implementation "io.insert-koin:koin-core:${DependenciesPlugin.koinVersion}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${DependenciesPlugin.retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${DependenciesPlugin.retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${DependenciesPlugin.retrofitVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${DependenciesPlugin.okHttpCLientInterceptor}"
 }

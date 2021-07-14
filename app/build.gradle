@@ -39,7 +39,15 @@ android {
 
 dependencies {
 
+    implementation project(":core")
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${DependenciesPlugin.kotlinVersion}"
+
+    implementation "io.insert-koin:koin-core:${DependenciesPlugin.koinVersion}"
+    implementation "io.insert-koin:koin-core-ext:${DependenciesPlugin.koinVersion}"
+    implementation "io.insert-koin:koin-android:${DependenciesPlugin.koinVersion}"
+    implementation "io.insert-koin:koin-test:${DependenciesPlugin.koinVersion}"
+
     implementation "androidx.core:core-ktx:${DependenciesPlugin.coreKtlVersion}"
     implementation "androidx.appcompat:appcompat:${DependenciesPlugin.appCompactVersion}"
     implementation "com.google.android.material:material:${DependenciesPlugin.materialVersion}"

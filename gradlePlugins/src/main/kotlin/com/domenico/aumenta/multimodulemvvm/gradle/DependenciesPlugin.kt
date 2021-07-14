@@ -18,5 +18,7 @@ class DependenciesPlugin : Plugin<Project> {
         val testExtJunitVersion = "1.1.3"
         val espressoCoreVersion = "3.4.0"
         val JUnitVersion = "4.13.2"
+        val retrofitVersion = "2.4.0"
+        val okHttpCLientInterceptor = "4.2.1"
     }
 }
