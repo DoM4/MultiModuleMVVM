@@ -14,7 +14,7 @@ class UserListMapper : Mapper<List<RemoteUser>, List<User>> {
         return userList
     }
 
-    private fun mapUser(input: RemoteUser): User {
+    fun mapUser(input: RemoteUser): User {
         return User(
             input.displayName,
             input.reputation,

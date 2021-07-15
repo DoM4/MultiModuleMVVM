@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.domenico.aumenta.core.utils.ApiResponse
 import com.domenico.aumenta.multimodulemvvm.databinding.FragmentFirstBinding
 import com.domenico.aumenta.multimodulemvvm.presentation.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,8 +46,18 @@ class FirstFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.userList.observe(viewLifecycleOwner, Observer {
-            Log.d(TAG, "userList ${it}")
+        viewModel.getUserListByReputation().observe(viewLifecycleOwner, {
+            when (it.status) {
+                ApiResponse.Status.SUCCESS -> {
+                    Log.d(TAG, "userList ${it?.data}")
+                }
+                ApiResponse.Status.ERROR -> {
+                    Log.d(TAG, "ERROR ${it?.message}")
+                }
+                ApiResponse.Status.LOADING -> {
+                    Log.d(TAG, "Loading ${it?.message}")
+                }
+            }
         })
     }
 
