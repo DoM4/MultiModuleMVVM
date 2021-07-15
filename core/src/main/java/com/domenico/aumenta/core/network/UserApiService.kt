@@ -14,7 +14,7 @@ interface UserApiService {
 
     @GET("2.2/users")
     fun getUsersByReputation(
-        @Query("pagesize") pageSize: Int = 1,
+        @Query("pagesize") pageSize: Int = 100,
         @Query("order") order: String = "desc",
         @Query("sort") sort: String = "reputation",
         @Query("site") site: String = "stackoverflow"
