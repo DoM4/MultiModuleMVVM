@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.domenico.aumenta.multimodulemvvm.FirstFragment"
+        android:name="com.domenico.aumenta.multimodulemvvm.UserListFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/user_list_fragment">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

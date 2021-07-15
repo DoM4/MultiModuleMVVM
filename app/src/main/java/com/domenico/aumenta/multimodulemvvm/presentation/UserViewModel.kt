@@ -14,6 +14,7 @@ class UserViewModel(
 ) : ViewModel() {
 
     fun getUserListByReputation(): LiveData<ApiResponse<List<User>>> {
+
         val userRemoteListLiveData = userUseCase.getUserListByReputation()
         return Transformations.map(
             userRemoteListLiveData
@@ -25,6 +26,9 @@ class UserViewModel(
                 ApiResponse.Status.ERROR -> {
                     Log.d(TAG, "ERROR : ${response.message}")
                     response.message?.let { ApiResponse.error(it) }
+                }
+                ApiResponse.Status.LOADING -> {
+                    ApiResponse.loading()
                 }
                 else -> null
             }

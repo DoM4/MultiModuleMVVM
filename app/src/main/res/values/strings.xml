@@ -9,4 +9,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="general_error_message">An error occurred</string>
+    <string name="user_id">UserId : %d</string>
+    <string name="user_location" formatted="false">Location : %s</string>
+    <string name="user_reputation" formatted="false">Reputation : %d</string>
+    <string name="user_member_since" formatted="false">Member since : %s</string>
 </resources>

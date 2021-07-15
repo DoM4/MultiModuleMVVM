@@ -20,5 +20,6 @@ class DependenciesPlugin : Plugin<Project> {
         val JUnitVersion = "4.13.2"
         val retrofitVersion = "2.4.0"
         val okHttpCLientInterceptor = "4.2.1"
+        val picassoVersion = "2.71828"
     }
 }

@@ -1,25 +1,26 @@
 package com.domenico.aumenta.multimodulemvvm
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.domenico.aumenta.core.utils.ApiResponse
-import com.domenico.aumenta.multimodulemvvm.databinding.FragmentFirstBinding
+import com.domenico.aumenta.multimodulemvvm.databinding.UserListFragmentBinding
 import com.domenico.aumenta.multimodulemvvm.presentation.UserViewModel
+import com.domenico.aumenta.multimodulemvvm.presentation.UsersAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class UserListFragment : Fragment() {
 
     private val viewModel: UserViewModel by viewModel()
+    private lateinit var usersAdapter: UsersAdapter
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: UserListFragmentBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,9 +29,9 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = UserListFragmentBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -38,10 +39,10 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-
+//        binding.buttonFirst.setOnClickListener {
+//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+//        }
+        setupUI()
         observeViewModel()
     }
 
@@ -49,16 +50,27 @@ class FirstFragment : Fragment() {
         viewModel.getUserListByReputation().observe(viewLifecycleOwner, {
             when (it.status) {
                 ApiResponse.Status.SUCCESS -> {
-                    Log.d(TAG, "userList ${it?.data}")
+                    binding.pbUserListFragment.visibility = View.GONE
+                    it.data?.let { it1 -> usersAdapter.setUsers(it1) }
                 }
                 ApiResponse.Status.ERROR -> {
-                    Log.d(TAG, "ERROR ${it?.message}")
+                    binding.pbUserListFragment.visibility = View.GONE
+                    Toast.makeText(
+                        context,
+                        getString(R.string.general_error_message),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 ApiResponse.Status.LOADING -> {
-                    Log.d(TAG, "Loading ${it?.message}")
+                    binding.pbUserListFragment.visibility = View.VISIBLE
                 }
             }
         })
+    }
+
+    private fun setupUI() {
+        usersAdapter = UsersAdapter()
+        binding.rvUserListFragment.adapter = usersAdapter
     }
 
     override fun onDestroyView() {
@@ -67,6 +79,6 @@ class FirstFragment : Fragment() {
     }
 
     companion object {
-        val TAG: String = FirstFragment::class.java.simpleName
+        val TAG: String = UserListFragment::class.java.simpleName
     }
 }

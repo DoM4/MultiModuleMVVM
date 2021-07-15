@@ -57,4 +57,7 @@ dependencies {
     testImplementation "junit:junit:${DependenciesPlugin.JUnitVersion}"
     androidTestImplementation "androidx.test.ext:junit:${DependenciesPlugin.testExtJunitVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${DependenciesPlugin.espressoCoreVersion}"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:${DependenciesPlugin.picassoVersion}"
 }
